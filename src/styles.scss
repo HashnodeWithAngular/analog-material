@@ -96,6 +96,13 @@ body {
       background-color: #1b1b1b;
       color: #eaeaea;
     }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      overflow: hidden;
+    }
   }
 
   .search-result {
