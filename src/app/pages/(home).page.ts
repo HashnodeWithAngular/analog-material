@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from "@angular/core";
 import { RouterLink } from "@angular/router";
 import { AsyncPipe, SlicePipe } from "@angular/common";
 import { Post } from "../models/post";
-// import { BlogService } from "../services/blog.service";
+import { BlogService } from "../services/blog.service";
 import { Observable } from "rxjs";
 
 @Component({
@@ -75,10 +75,10 @@ import { Observable } from "rxjs";
 export default class HomeComponent implements OnInit {
 	blogURL!: string;
 	posts$!: Observable<Post[]>;
-	// private blogService = inject(BlogService);
+	private blogService = inject(BlogService);
 
 	ngOnInit() {
-		// this.blogURL = this.blogService.getBlogURL();
-		// this.posts$ = this.blogService.getPosts(this.blogURL);
+		this.blogURL = this.blogService.getBlogURL();
+		this.posts$ = this.blogService.getPosts(this.blogURL);
 	}
 }

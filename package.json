@@ -28,6 +28,7 @@
     "@angular/platform-browser-dynamic": "^18.0.0",
     "@angular/platform-server": "^18.0.0",
     "@angular/router": "^18.0.0",
+    "apollo-angular": "^7.0.2",
     "front-matter": "^4.0.2",
     "marked": "^5.0.2",
     "marked-gfm-heading-id": "^3.1.0",
@@ -36,7 +37,9 @@
     "prismjs": "^1.29.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.14.3"
+    "zone.js": "~0.14.3",
+    "@apollo/client": "^3.0.0",
+    "graphql": "^16"
   },
   "devDependencies": {
     "@analogjs/platform": "^1.5.0",
