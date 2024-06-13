@@ -66,7 +66,8 @@ import { FollowDialogComponent } from "../partials/follow-dialog.component";
       </mat-toolbar-row>
       <mat-toolbar-row class="second">
         <div class="social">
-          <app-blog-social-icons [blogSocialLinks]="blogSocialLinks"></app-blog-social-icons>
+          <!-- error with icons path in blog-social-icons component -->
+          <!-- <app-blog-social-icons [blogSocialLinks]="blogSocialLinks"></app-blog-social-icons> -->
         </div>
         <div class="follow">
           <button mat-raised-button (click)="openFollowDialog()">Follow</button>
@@ -75,7 +76,7 @@ import { FollowDialogComponent } from "../partials/follow-dialog.component";
       <mat-toolbar-row class="third">
         <div class="series">
           @for (series of seriesList; track series) {
-          <a [routerLink]="['series/', series.slug]" class="series-link">{{ series.name }}</a>
+          <a [routerLink]="['series', series.slug]" class="series-link">{{ series.name }}</a>
           }
         </div>
       </mat-toolbar-row>
