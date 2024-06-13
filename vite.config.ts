@@ -13,6 +13,9 @@ export default defineConfig(({ mode }) => ({
   },
   resolve: {
     mainFields: ['module'],
+    alias: {
+      'src': `${__dirname}/src`
+    },
   },
   plugins: analog({
     vite: {

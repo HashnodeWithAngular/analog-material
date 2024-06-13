@@ -21,6 +21,7 @@ import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { MatToolbarModule } from "@angular/material/toolbar";
+import { YoutubeVideoEmbedDirective } from "src/app/directives/youtube-video-embed.directive";
 
 @Component({
 	selector: "app-post-details",
@@ -36,6 +37,7 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 		MatIconModule,
 		MatSidenavModule,
 		MatListModule,
+    YoutubeVideoEmbedDirective,
   ],
 	template: `
 		<div class="post-details-page" [class.is-mobile]="mobileQuery.matches">
