@@ -28,11 +28,19 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { Subscription } from "rxjs";
 import { platformBrowser } from "@angular/platform-browser";
 import { BlogService } from "../services/blog.service";
+import { BlogSocialIconsComponent } from "../partials/blog-social-icons.component";
+import { SearchDialogComponent } from "../partials/search-dialog.component";
+import { SettingsDialogComponent } from "../partials/settings-dialog.component";
+import { FollowDialogComponent } from "../partials/follow-dialog.component";
 
 @Component({
 	selector: "app-header",
 	standalone: true,
 	imports: [
+    BlogSocialIconsComponent,
+    SearchDialogComponent,
+    SettingsDialogComponent,
+    FollowDialogComponent,
 		KeyValuePipe,
 		RouterLink,
 		MatSlideToggleModule,
@@ -48,20 +56,20 @@ import { BlogService } from "../services/blog.service";
           <h1>{{ blogName }}</h1>
         </a>
         <div class="controls">
-          <!-- <button mat-mini-fab class="control-button" (click)="openSearchDialog()">
+          <button mat-mini-fab class="control-button" (click)="openSearchDialog()">
             <mat-icon>search</mat-icon>
           </button>
           <button mat-mini-fab class="control-button" (click)="openSettingsDialog()">
             <mat-icon>settings</mat-icon>
-          </button> -->
+          </button>
         </div>
       </mat-toolbar-row>
       <mat-toolbar-row class="second">
         <div class="social">
-          <!-- <app-blog-social-icons [blogSocialLinks]="blogSocialLinks"></app-blog-social-icons> -->
+          <app-blog-social-icons [blogSocialLinks]="blogSocialLinks"></app-blog-social-icons>
         </div>
         <div class="follow">
-          <!-- <button mat-raised-button (click)="openFollowDialog()">Follow</button> -->
+          <button mat-raised-button (click)="openFollowDialog()">Follow</button>
         </div>
       </mat-toolbar-row>
       <mat-toolbar-row class="third">
@@ -267,29 +275,29 @@ export class HeaderComponent implements OnInit, OnDestroy {
 		});
 	}
 
-	// openSearchDialog() {
-	// 	this.dialog.open(SearchDialogComponent, {
-	// 		id: "searchDialog",
-	// 		width: "60%",
-	// 		maxHeight: "70%",
-	// 		position: { top: "150px" },
-	// 		data: this.blogInfo.id,
-	// 	});
-	// }
+	openSearchDialog() {
+		this.dialog.open(SearchDialogComponent, {
+			id: "searchDialog",
+			width: "60%",
+			maxHeight: "70%",
+			position: { top: "150px" },
+			data: this.blogInfo.id,
+		});
+	}
 
-	// openSettingsDialog() {
-	// 	this.dialog.open(SettingsDialogComponent, {
-	// 		height: "45vh",
-	// 		width: "26vw",
-	// 	});
-	// }
+	openSettingsDialog() {
+		this.dialog.open(SettingsDialogComponent, {
+			height: "45vh",
+			width: "26vw",
+		});
+	}
 
-	// openFollowDialog() {
-	// 	this.dialog.open(FollowDialogComponent, {
-	// 		height: "50vh",
-	// 		width: "26vw",
-	// 	});
-	// }
+	openFollowDialog() {
+		this.dialog.open(FollowDialogComponent, {
+			height: "50vh",
+			width: "26vw",
+		});
+	}
 
 	ngOnDestroy(): void {
 		this.querySubscription?.unsubscribe();

@@ -17,6 +17,8 @@ import { BlogService } from '../services/blog.service';
 			<small
 				>Created using<a href="https://github.com/AnguHashBlog" target="_blank"
 					>AnguHashBlog</a
+				> and<a href="https://analogjs.org" target="_blank"
+					>Analog</a
 				></small
 			>
 		</mat-toolbar>
@@ -48,6 +50,10 @@ import { BlogService } from '../services/blog.service';
 					color: #999999;
 					font-size: 0.8rem;
 				}
+
+        a {
+          margin-left: 0.2rem;
+        }
 			}
 		`,
 	],

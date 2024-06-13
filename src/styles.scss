@@ -23,7 +23,7 @@ $semi-dark-bg-color: #333;
 $light-text-color: #cacaca;
 
 $button-bg: #423844;
-$button-color: #ac9fae;
+$button-color: #bf8fc8;
 
 // Light theme variables
 $light-bg-color: #f3f2f7;
@@ -47,22 +47,23 @@ body {
 
   a {
     text-decoration: none;
+    color: $button-color;
+
+    h3 {
+      font-weight: 500;
+    }
   }
 
   color: $button-color;
 
   button[mat-raised-button],
   button[mat-mini-fab] {
-    background-color: $button-bg;
+    background-color: $button-bg !important;
     color: $button-color;
   }
 
   .mat-mdc-text-field-wrapper {
     background-color: $button-bg !important;
-  }
-
-  input {
-    color: $button-color !important;
   }
 
   mat-toolbar {
@@ -126,8 +127,10 @@ body {
   body {
     background-color: #fff;
 
-    button[mat-raised-button] {
-      background-color: $light-button-bg;
+    button[mat-raised-button],
+    button[mat-mini-fab] {
+      background-color: $light-button-bg !important;
+      color: $light-button-color !important;
     }
 
     mat-toolbar {
@@ -137,6 +140,10 @@ body {
 
       mat-icon {
         color: $light-button-color;
+      }
+
+      button[mat-raised-button] {
+        box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
       }
     }
 
