@@ -1,0 +1,9 @@
+<div class="social-links">
+@for (social of blogSocialLinks | keyvalue; track social) {
+  @if (social.value) {
+  <a href="{{social.value}}" target="_blank" rel="noopener noreferrer">
+    <mat-icon svgIcon="{{social.key}}"></mat-icon>
+  </a>
+  }
+}
+</div>

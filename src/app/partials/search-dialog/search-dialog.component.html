@@ -1,0 +1,38 @@
+<div class="search-dialog-header">
+  <h2>Search posts</h2>
+  <mat-icon class="close-button" mat-dialog-close>close</mat-icon>
+</div>
+
+<mat-dialog-content>
+  <mat-form-field class="search-field">
+    <input matInput type="text"  [formControl]="queryFormControl">
+    @if (queryFormControl.value) {
+      <mat-icon matSuffix (click)="clearQuery()">close</mat-icon>
+    }
+  </mat-form-field>
+
+  @if (queryFormControl.value && posts.length !== 0) {
+  @for (post of posts; track post.id) {
+  <div class="search-result" (click)="navigateToPost(post.slug)">
+    <div class="info-section">
+      <h2 class="post-title">{{ post.title }}</h2>
+      <p class="author-name post-info">{{ post.author.name }}</p>
+      <p class="post-info">{{ post.publishedAt | date }}</p>
+    </div>
+    <img [src]="post.coverImage.url" [alt]="post.title + ' cover image'">
+  </div>
+  }
+  } @else {
+  @if (queryFormControl.value) {
+  <div class="no-result-text">
+    <mat-icon class="">search</mat-icon>
+    <p>No matching articles found. Try another search</p>
+  </div>
+  } @else {
+  <div class="no-result-text">
+    <mat-icon class="">search</mat-icon>
+    <p>Search articles from this blog</p>
+  </div>
+  }
+  }
+</mat-dialog-content>

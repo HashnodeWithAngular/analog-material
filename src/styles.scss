@@ -1,20 +1,14 @@
 @use '@angular/material' as mat;
 
-$light-theme: mat.define-theme((
-  color: (
-    theme-type: light,
-    primary: mat.$azure-palette,
-    tertiary: mat.$blue-palette,
-  )
-));
+$light-theme: mat.define-theme((color: (theme-type: light,
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      )));
 
-$dark-theme: mat.define-theme((
-  color: (
-    theme-type: dark,
-    primary: mat.$magenta-palette,
-    tertiary: mat.$violet-palette,
-  )
-));
+$dark-theme: mat.define-theme((color: (theme-type: dark,
+        primary: mat.$magenta-palette,
+        tertiary: mat.$violet-palette,
+      )));
 
 @include mat.core();
 @include mat.color-variants-backwards-compatibility($light-theme);
@@ -23,18 +17,173 @@ $dark-theme: mat.define-theme((
   @include mat.all-component-themes($dark-theme);
 }
 
+// Dark theme variables
+$dark-bg-color: #222;
+$semi-dark-bg-color: #333;
+$light-text-color: #cacaca;
+
+$button-bg: #423844;
+$button-color: #ac9fae;
+
+// Light theme variables
+$light-bg-color: #f3f2f7;
+$semi-light-bg-color: #c0c0c0;
+$dark-text-color: #333;
+
+$light-button-bg: #e0e0ff;
+$light-button-color: #005cbb;
+
+html {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+
 body {
   margin: 0;
   box-sizing: border-box;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #333;
+
+  a {
+    text-decoration: none;
+  }
+
+  color: $button-color;
+
+  button[mat-raised-button],
+  button[mat-mini-fab] {
+    background-color: $button-bg;
+    color: $button-color;
+  }
+
+  .mat-mdc-text-field-wrapper {
+    background-color: $button-bg !important;
+  }
+
+  input {
+    color: $button-color !important;
+  }
+
+  mat-toolbar {
+    color: $light-text-color;
+    color: $button-color;
+
+    mat-icon {
+      color: $button-color;
+    }
+  }
+
+  mat-sidenav {
+    background-color: #1f1e1e;
+  }
+
+  .content,
+  mat-sidenav-content {
+    background-color: $dark-bg-color;
+  }
+
+  article {
+    color: $light-text-color;
+
+    .published-date,
+    .read-time {
+      background-color: #555;
+    }
+
+    a {
+      color: #bf8fc8;
+    }
+
+    pre {
+      background-color: #1b1b1b;
+      color: #eaeaea;
+    }
+  }
+
+  .search-result {
+    &:hover {
+      background-color: #444 !important;
+      color: #a97aa7;
+    }
+  }
+
+  .footer {
+    a {
+      &:hover {
+        color: #bcbcbc;
+      }
+    }
+  }
 }
 
-html {
-  height: 100%;
-}
 
 @media (prefers-color-scheme: light) {
   :root {
     @include mat.all-component-colors($light-theme);
+  }
+
+  body {
+    background-color: #fff;
+
+    button[mat-raised-button] {
+      background-color: $light-button-bg;
+    }
+
+    mat-toolbar {
+      background-color: $light-bg-color;
+      color: $light-button-color;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+
+      mat-icon {
+        color: $light-button-color;
+      }
+    }
+
+    mat-sidenav {
+      background-color: #f8f8fa;
+
+      mat-icon {
+        color: $light-button-color;
+      }
+    }
+
+    mat-card {
+      background-color: $light-bg-color;
+
+      h3 {
+        color: $light-button-color;
+      }
+    }
+
+    article {
+
+      .published-date,
+      .read-time {
+        background-color: $light-button-bg;
+        color: $light-button-color;
+      }
+
+      a {
+        color: $light-button-color;
+      }
+
+      pre {
+        background-color: #383838;
+        color: #eaeaea;
+      }
+    }
+
+    .footer {
+      background-color: $light-bg-color;
+
+      a {
+        color: #858585;
+
+        &:hover {
+          color: #707070;
+        }
+      }
+    }
   }
 }

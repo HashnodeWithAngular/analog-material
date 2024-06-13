@@ -5,28 +5,33 @@ import { Post } from "../models/post";
 import { BlogService } from "../services/blog.service";
 import { Observable } from "rxjs";
 
+import { MatGridListModule } from "@angular/material/grid-list";
+import { MatCardModule } from "@angular/material/card";
+
 @Component({
 	selector: "app-home",
 	standalone: true,
-	imports: [RouterLink, AsyncPipe, SlicePipe],
+	imports: [RouterLink, MatCardModule, MatGridListModule, AsyncPipe, SlicePipe],
 	template: `
 		<div class="posts-view">
 			<div class="cards-wrapper grid">
 				@for (post of posts$ | async; track post) {
-				<a [routerLink]="['post', post.slug]" class="card">
-					<div class="card-image">
-						<img [src]="post.coverImage.url" />
-					</div>
-					<div class="card-title">
-						<h3>
-							{{
-								post.title.length > 90
-									? (post.title | slice : 0 : 90) + "..."
-									: post.title
-							}}
-						</h3>
-					</div>
-				</a>
+				<mat-card>
+					<a [routerLink]="['post', post.slug]">
+						<div class="card-image">
+							<img [src]="post.coverImage.url" />
+						</div>
+						<div class="card-title">
+							<h3>
+								{{
+									post.title.length > 90
+										? (post.title | slice : 0 : 90) + "..."
+										: post.title
+								}}
+							</h3>
+						</div>
+					</a>
+				</mat-card>
 				}
 			</div>
 		</div>
@@ -34,10 +39,10 @@ import { Observable } from "rxjs";
 	styles: [
 		`
 			.posts-view {
-				width: 80vw;
-				min-height: 67.2vh;
+				display: flex;
+				align-items: center;
+				justify-content: center;
 				padding: 0.5rem 0;
-				margin: 0 auto 2rem;
 
 				.layout-control {
 					display: flex;
@@ -48,24 +53,62 @@ import { Observable } from "rxjs";
 					display: flex;
 					flex-wrap: wrap;
 					justify-content: center;
-					margin: 2rem 1rem 1rem;
+					margin: 2rem 1rem;
 
-					&.grid {
-						.card {
-							&:hover {
-								transform: scale(1.1);
-								transition: all 0.3s ease-in-out;
+					mat-card {
+						width: 25rem;
+						margin: 1rem;
+						padding: 0;
+						cursor: pointer;
+
+						&:hover {
+							transform: scale(1.01);
+							box-shadow: 0 4px 8px #00000033;
+							transition: all 0.3s ease-in-out;
+						}
+
+						a {
+							padding: 0;
+							margin: 0;
+
+							.card-image {
+								width: 25rem;
+								border-radius: 0.3rem;
+								overflow: hidden;
+
+								img {
+									width: 100%;
+									object-fit: cover;
+								}
+							}
+
+							.card-title {
+								padding: 0 1rem;
 							}
 						}
 					}
 				}
+			}
 
-				.load-more-posts {
-					display: flex;
-					justify-content: center;
-					button {
-						font-size: 1rem;
-						text-transform: uppercase;
+			@media (max-width: 600px) {
+				.posts-view {
+					.cards-wrapper {
+						width: 90vw;
+						mat-card {
+							width: 90%;
+							margin: 0.5rem 0;
+							a {
+								.card-image {
+									width: unset;
+								}
+
+								.card-title {
+									h3 {
+										font-size: 1.1rem;
+									}
+								}
+							}
+						}
 					}
 				}
 			}

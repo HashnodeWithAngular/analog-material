@@ -1,0 +1,36 @@
+<div class="dialog-close">
+  <mat-icon mat-dialog-close>close</mat-icon>
+</div>
+
+@if (blogURLChanged) {
+<mat-dialog-content>
+  <p>Blog URL changed and set in local storage</p>
+  <p>Reload the page to see your content loading</p>
+  <p>When resetting you may need to click on</p>
+  <p>the logo image to load the content again</p>
+  <div class="dialog-actions">
+    <button mat-raised-button (click)="resetBlogURL()">Reset</button>
+  </div>
+</mat-dialog-content>
+} @else {
+<mat-dialog-content>
+  <h3 mat-dialog-title>Try with your Blog</h3>
+  <p>try AnguHashBlog</p>
+  <small>with another Hashnode blog </small>
+  <mat-form-field>
+    <mat-label>Blog URL</mat-label>
+    <input matInput type="text" [(ngModel)]="newBlogURL">
+    @if (newBlogURL) {
+    <button matSuffix mat-icon-button aria-label="Clear" (click)="newBlogURL=''">
+      <mat-icon>close</mat-icon>
+    </button>
+    }
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <div class="dialog-actions">
+    <button mat-raised-button (click)="changeBlogURL(); newBlogURL=''">Change</button>
+  </div>
+</mat-dialog-actions>
+}
+
