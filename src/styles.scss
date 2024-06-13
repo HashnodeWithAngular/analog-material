@@ -1,4 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@include mat.core();
+
+$analog-primary: mat.define-palette(mat.$indigo-palette);
+$analog-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$analog-warn: mat.define-palette(mat.$red-palette);
+$analog-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $analog-primary,
+      accent: $analog-accent,
+      warn: $analog-warn,
+    ),
+  )
+);
+
+@include mat.all-component-themes($analog-theme);
+
+
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
