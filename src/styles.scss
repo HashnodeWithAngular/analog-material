@@ -62,10 +62,6 @@ body {
     color: $button-color;
   }
 
-  .mat-mdc-text-field-wrapper {
-    background-color: $button-bg !important;
-  }
-
   mat-toolbar {
     color: $light-text-color;
     color: $button-color;
@@ -104,7 +100,7 @@ body {
 
   .search-result {
     &:hover {
-      background-color: #444 !important;
+      background-color: #808080a2;
       color: #a97aa7;
     }
   }
@@ -178,6 +174,12 @@ body {
       pre {
         background-color: #383838;
         color: #eaeaea;
+      }
+    }
+
+    .search-result {
+      &:hover {
+        color: $light-button-color;
       }
     }
 

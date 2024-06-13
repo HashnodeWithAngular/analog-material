@@ -126,10 +126,8 @@ import { FollowDialogComponent } from "../partials/follow-dialog.component";
 						display: flex;
 						align-items: center;
 						justify-content: center;
+            gap: 0.6rem;
 
-						.control-button {
-							margin-right: 0.6rem;
-						}
 					}
 
 					.follow {
