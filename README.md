@@ -5,10 +5,11 @@ Use this version of
 which allows you to connect your Hashnode Blog to
 # ![analog logo](/analog.png) Analog 
 
-without UI libraries
+and includes the
+
+ ### ![angular material logo](/angular-material.png) Angular Material UI library
 
 <hr>
-
 
 This project was generated with [Analog](https://analogjs.org), the fullstack meta-framework for Angular.
 
