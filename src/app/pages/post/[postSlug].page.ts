@@ -11,7 +11,12 @@ import { Meta } from "@angular/platform-browser";
 import { BlogService } from "../../services/blog.service";
 import { BlogInfo, BlogLinks } from "src/app/models/blog-info";
 import { Post, SeriesList } from "src/app/models/post";
-import { AsyncPipe, DatePipe, KeyValuePipe, ViewportScroller } from "@angular/common";
+import {
+	AsyncPipe,
+	DatePipe,
+	KeyValuePipe,
+	ViewportScroller,
+} from "@angular/common";
 import { SanitizerHtmlPipe } from "../../pipes/sanitizer-html.pipe";
 import { map, Observable, Subscription } from "rxjs";
 import { ActivatedRoute, RouterLink } from "@angular/router";
@@ -27,86 +32,104 @@ import { YoutubeVideoEmbedDirective } from "src/app/directives/youtube-video-emb
 	selector: "app-post-details",
 	standalone: true,
 	imports: [
-    RouterLink,
+		RouterLink,
 		AsyncPipe,
 		DatePipe,
-    KeyValuePipe,
-    SanitizerHtmlPipe,
+		KeyValuePipe,
+		SanitizerHtmlPipe,
 		MatToolbarModule,
 		MatButtonModule,
 		MatIconModule,
 		MatSidenavModule,
 		MatListModule,
-    YoutubeVideoEmbedDirective,
-  ],
+		YoutubeVideoEmbedDirective,
+	],
 	template: `
 		<div class="post-details-page" [class.is-mobile]="mobileQuery.matches">
-  <mat-toolbar class="toolbar">
-    <div class="toolbar-row-start">
-      <div class="menu">
-        <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-      </div>
-      <a routerLink="/" class="blog-title">
-        <h1>{{blogName}}</h1>
-      </a>
-    </div>
-    <div class="toolbar-row-end">
-    </div>
+			<mat-toolbar class="toolbar">
+				<div class="toolbar-row-start">
+					<div class="menu">
+						<button mat-icon-button (click)="snav.toggle()">
+							<mat-icon>menu</mat-icon>
+						</button>
+					</div>
+					<a routerLink="/" class="blog-title">
+						<h1>{{ blogName }}</h1>
+					</a>
+				</div>
+				<div class="toolbar-row-end"></div>
+			</mat-toolbar>
 
-  </mat-toolbar>
+			<mat-sidenav-container class="sidenav-container">
+				<mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'">
+					<div class="mat-sidenav-menu">
+						<h3>Series</h3>
+						<mat-nav-list class="series">
+							@for (series of seriesList; track series) {
+							<a [routerLink]="['/series', series.slug]">{{ series.name }}</a>
+							}
+						</mat-nav-list>
+						<mat-nav-list class="social">
+							<!-- issues with icons path after adding public folder -->
+							<!-- <app-blog-social-icons [blogSocialLinks]="blogSocialLinks"></app-blog-social-icons> -->
+						</mat-nav-list>
+					</div>
+				</mat-sidenav>
 
-  <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'">
-      <div class="mat-sidenav-menu">
-        <h3>Series</h3>
-        <mat-nav-list class="series">
-          @for (series of seriesList; track series) {
-          <a [routerLink]="['/series', series.slug]">{{series.name}}</a>
-          }
-        </mat-nav-list>
-        <mat-nav-list class="social">
-          <!-- issues with icons path after adding public folder -->
-          <!-- <app-blog-social-icons [blogSocialLinks]="blogSocialLinks"></app-blog-social-icons> -->
-        </mat-nav-list>
-      </div>
-    </mat-sidenav>
+				<mat-sidenav-content>
+					@if (post$ | async; as post) {
+					<article>
+						<h1 class="title">{{ post.title }}</h1>
+						<img
+							class="cover-image"
+							[src]="post.coverImage.url"
+							alt="Cover image for {{ post.title }}"
+						/>
+						<div class="post-details">
+							<div class="author-info">
+								<img
+									class="author-image"
+									[src]="post.author.profilePicture"
+									alt="{{ post.author.username }}"
+								/>
+								<div class="author-text">
+									<span class="author-name">{{ post.author.username }}</span>
+									<div class="post-meta">
+										<span class="published-date">
+											<mat-icon>today</mat-icon>
+											{{ post.publishedAt | date : "MMM dd, yyyy" }}
+										</span>
+										<span class="read-time">
+											<mat-icon>import_contacts</mat-icon>
+											{{ post.readTimeInMinutes }} min read
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- yt video directive not set since there were errors with bath also -->
+						<div
+							class="content"
+							[innerHTML]="post.content.html | sanitizerHtml"
+							youtubeVideoEmbed
+						></div>
+					</article>
+					}
+				</mat-sidenav-content>
+			</mat-sidenav-container>
 
-    <mat-sidenav-content>
-      @if (post$ | async; as post) {
-      <article>
-        <h1 class="title">{{ post.title }}</h1>
-        <img class="cover-image" [src]="post.coverImage.url" alt="Cover image for {{ post.title }}">
-        <div class="post-details">
-          <div class="author-info">
-            <img class="author-image" [src]="post.author.profilePicture" alt="{{post.author.username}}">
-            <div class="author-text">
-              <span class="author-name">{{post.author.username}}</span>
-              <div class="post-meta">
-                <span class="published-date">
-                  <mat-icon>today</mat-icon>
-                  {{post.publishedAt | date: 'MMM dd, yyyy' }}
-                </span>
-                <span class="read-time">
-                  <mat-icon>import_contacts</mat-icon>
-                  {{post.readTimeInMinutes}} min read
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- yt video directive not set since there were errors with bath also -->
-        <div class="content" [innerHTML]="post.content.html | sanitizerHtml" youtubeVideoEmbed></div>
-      </article>
-      }
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-
-  <mat-toolbar class="footer">
-    <p>&copy; {{date}} {{blogName}}</p>
-    <small>Created using<a href="https://github.com/AnguHashBlog" target="_blank">AnguHashBlog</a></small>
-  </mat-toolbar>
-</div>
-
+			<mat-toolbar class="footer">
+				<p>&copy; {{ date }} {{ blogName }}</p>
+				<small
+					>Created using<a
+						href="https://github.com/AnguHashBlog"
+						target="_blank"
+						>AnguHashBlog</a
+					>
+					and<a href="https://analogjs.org" target="_blank">Analog</a></small
+				>
+			</mat-toolbar>
+		</div>
 	`,
 	styles: [
 		`
@@ -138,7 +161,7 @@ import { YoutubeVideoEmbedDirective } from "src/app/directives/youtube-video-emb
 
 					.toolbar-row-start {
 						display: flex;
-            align-items: center;
+						align-items: center;
 					}
 
 					.toolbar-row-end {
@@ -295,6 +318,10 @@ import { YoutubeVideoEmbedDirective } from "src/app/directives/youtube-video-emb
 						color: #999999;
 						font-size: 0.8rem;
 					}
+
+					a {
+						margin-left: 0.2rem;
+					}
 				}
 			}
 
@@ -325,20 +352,20 @@ import { YoutubeVideoEmbedDirective } from "src/app/directives/youtube-video-emb
 	],
 })
 export default class PostDetailsComponent implements OnInit, OnDestroy {
-  private readonly scroller = inject(ViewportScroller);
+	private readonly scroller = inject(ViewportScroller);
 	mobileQuery: MediaQueryList;
-  date = new Date().getFullYear();
-  blogURL!: string;
+	date = new Date().getFullYear();
+	blogURL!: string;
 	blogInfo!: BlogInfo;
 	blogName: string = "";
 	blogSocialLinks!: BlogLinks;
 	seriesList!: SeriesList[];
 	post$!: Observable<Post>;
-  postTitle!: string;
+	postTitle!: string;
 	postCoverImage!: string;
-  private route = inject(ActivatedRoute);
+	private route = inject(ActivatedRoute);
 	private blogService = inject(BlogService);
-  private meta = inject(Meta);
+	private meta = inject(Meta);
 	private querySubscription?: Subscription;
 	private _mobileQueryListener: () => void;
 
@@ -352,36 +379,36 @@ export default class PostDetailsComponent implements OnInit, OnDestroy {
 
 	ngOnInit(): void {
 		this.scroller.scrollToPosition([0, 0]);
-    this.blogURL = this.blogService.getBlogURL();
+		this.blogURL = this.blogService.getBlogURL();
 		this.querySubscription = this.blogService
 			.getBlogInfo(this.blogURL)
 			.subscribe((data) => {
 				this.blogInfo = data;
 				this.blogName = this.blogInfo.title;
-        const { __typename, ...links } = data.links;
-        this.blogSocialLinks = links;
+				const { __typename, ...links } = data.links;
+				this.blogSocialLinks = links;
 			});
-      this.postSlug$.subscribe((slug) => {
-        if (slug !== null) {
-          this.post$ = this.blogService.getSinglePost(this.blogURL, slug);
-          this.post$.subscribe((post) => {
-            this.postTitle = post.title;
-            this.postCoverImage = post.coverImage.url;
-            this.meta.updateTag({
-              name: "title",
-              content: post.title,
-            });
-            this.meta.updateTag({
-              name: "description",
-              content: post.title,
-            });
-            this.meta.updateTag({
-              name: "image",
-              content: this.postCoverImage,
-            });
-          });
-        }
-      });
+		this.postSlug$.subscribe((slug) => {
+			if (slug !== null) {
+				this.post$ = this.blogService.getSinglePost(this.blogURL, slug);
+				this.post$.subscribe((post) => {
+					this.postTitle = post.title;
+					this.postCoverImage = post.coverImage.url;
+					this.meta.updateTag({
+						name: "title",
+						content: post.title,
+					});
+					this.meta.updateTag({
+						name: "description",
+						content: post.title,
+					});
+					this.meta.updateTag({
+						name: "image",
+						content: this.postCoverImage,
+					});
+				});
+			}
+		});
 	}
 
 	ngOnDestroy(): void {
