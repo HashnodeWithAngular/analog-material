@@ -1,5 +1,15 @@
 # Analog App
 
+Use this version of 
+## ![anguhashblog logo](/anguhashblog-logo-readme.png) AnguHashBlog 
+which allows you to connect your Hashnode Blog to
+# ![analog logo](/analog.png) Analog 
+
+without UI libraries
+
+<hr>
+
+
 This project was generated with [Analog](https://analogjs.org), the fullstack meta-framework for Angular.
 
 ## Setup
