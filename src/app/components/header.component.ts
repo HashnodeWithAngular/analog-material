@@ -67,7 +67,7 @@ import { FollowDialogComponent } from "../partials/follow-dialog.component";
       <mat-toolbar-row class="second">
         <div class="social">
           <!-- error with icons path in blog-social-icons component -->
-          <!-- <app-blog-social-icons [blogSocialLinks]="blogSocialLinks"></app-blog-social-icons> -->
+          <app-blog-social-icons [blogSocialLinks]="blogSocialLinks"></app-blog-social-icons>
         </div>
         <div class="follow">
           <button mat-raised-button (click)="openFollowDialog()">Follow</button>

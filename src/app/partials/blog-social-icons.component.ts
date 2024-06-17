@@ -23,7 +23,7 @@ import { MatIcon, MatIconRegistry } from "@angular/material/icon";
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: center;
-    gap: 0.3rem;
+    gap: 0.5rem;
 
     a {
       mat-icon {
@@ -42,32 +42,33 @@ export class BlogSocialIconsComponent {
 		private iconRegistry: MatIconRegistry,
 		private sanitizer: DomSanitizer
 	) {
+    const deployedUrl = "https://analogmaterial.anguhashblog.com/";
 		iconRegistry.addSvgIcon("twitter",
-			this.sanitizer.bypassSecurityTrustResourceUrl("/icons/twitter.svg")
+			this.sanitizer.bypassSecurityTrustResourceUrl(`${deployedUrl}icons/twitter.svg`)
 		);
 		this.iconRegistry.addSvgIcon("instagram",
-			this.sanitizer.bypassSecurityTrustResourceUrl("/icons/instagram.svg")
+			this.sanitizer.bypassSecurityTrustResourceUrl(`${deployedUrl}icons/instagram.svg`)
 		);
 		this.iconRegistry.addSvgIcon("github",
-			this.sanitizer.bypassSecurityTrustResourceUrl("/icons/github.svg")
+			this.sanitizer.bypassSecurityTrustResourceUrl(`${deployedUrl}icons/github.svg`)
 		);
 		this.iconRegistry.addSvgIcon("website",
-			this.sanitizer.bypassSecurityTrustResourceUrl("/icons/website.svg")
+			this.sanitizer.bypassSecurityTrustResourceUrl(`${deployedUrl}icons/website.svg`)
 		);
 		this.iconRegistry.addSvgIcon("hashnode",
-			this.sanitizer.bypassSecurityTrustResourceUrl("/icons/hashnode.svg")
+			this.sanitizer.bypassSecurityTrustResourceUrl(`${deployedUrl}icons/hashnode.svg`)
 		);
 		this.iconRegistry.addSvgIcon("youtube",
-			this.sanitizer.bypassSecurityTrustResourceUrl("/icons/youtube.svg")
+			this.sanitizer.bypassSecurityTrustResourceUrl(`${deployedUrl}icons/youtube.svg`)
 		);
 		this.iconRegistry.addSvgIcon("dailydev",
-			this.sanitizer.bypassSecurityTrustResourceUrl("/icons/dailydev.svg")
+			this.sanitizer.bypassSecurityTrustResourceUrl(`${deployedUrl}icons/dailydev.svg`)
 		);
 		this.iconRegistry.addSvgIcon("linkedin",
-			this.sanitizer.bypassSecurityTrustResourceUrl("/icons/linkedin.svg")
+			this.sanitizer.bypassSecurityTrustResourceUrl(`${deployedUrl}icons/linkedin.svg`)
 		);
 		this.iconRegistry.addSvgIcon("mastodon",
-			this.sanitizer.bypassSecurityTrustResourceUrl("/icons/mastodon.svg")
+			this.sanitizer.bypassSecurityTrustResourceUrl(`${deployedUrl}icons/mastodon.svg`)
 		);
 	}
 }
