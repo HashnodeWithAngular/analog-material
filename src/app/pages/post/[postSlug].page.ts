@@ -27,6 +27,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { YoutubeVideoEmbedDirective } from "src/app/directives/youtube-video-embed.directive";
+import { BlogSocialIconsComponent } from "src/app/partials/blog-social-icons.component";
 
 @Component({
 	selector: "app-post-details",
@@ -37,6 +38,7 @@ import { YoutubeVideoEmbedDirective } from "src/app/directives/youtube-video-emb
 		DatePipe,
 		KeyValuePipe,
 		SanitizerHtmlPipe,
+    BlogSocialIconsComponent,
 		MatToolbarModule,
 		MatButtonModule,
 		MatIconModule,
@@ -71,7 +73,7 @@ import { YoutubeVideoEmbedDirective } from "src/app/directives/youtube-video-emb
 						</mat-nav-list>
 						<mat-nav-list class="social">
 							<!-- issues with icons path after adding public folder -->
-							<!-- <app-blog-social-icons [blogSocialLinks]="blogSocialLinks"></app-blog-social-icons> -->
+							<app-blog-social-icons [blogSocialLinks]="blogSocialLinks"></app-blog-social-icons>
 						</mat-nav-list>
 					</div>
 				</mat-sidenav>
@@ -107,7 +109,6 @@ import { YoutubeVideoEmbedDirective } from "src/app/directives/youtube-video-emb
 								</div>
 							</div>
 						</div>
-						<!-- yt video directive not set since there were errors with bath also -->
 						<div
 							class="content"
 							[innerHTML]="post.content.html | sanitizerHtml"
