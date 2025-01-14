@@ -151,7 +151,7 @@ import { BlogService } from "../services/blog.service";
   `,
 })
 export class SettingsDialogComponent implements OnInit {
-	blogURL: string = "hashnode.anguhashblog.com";
+	blogURL: string = "hashblog-withangular.hashnode.dev";
 	newBlogURL: string = "";
 	blogURLChanged: boolean = false;
 	blogService: BlogService = inject(BlogService);
@@ -160,7 +160,7 @@ export class SettingsDialogComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.blogURL = this.blogService.getBlogURL();
-		if (this.blogURL === "hashnode.anguhashblog.com") {
+		if (this.blogURL === "hashblog-withangular.hashnode.dev") {
 			this.blogURLChanged = false;
 		} else {
 			this.blogURLChanged = true;
@@ -170,7 +170,7 @@ export class SettingsDialogComponent implements OnInit {
 	changeBlogURL(): void {
 		this.blogService.setBlogURL(this.newBlogURL);
 		this.blogURL = this.blogService.getBlogURL();
-		if (this.blogURL === "hashnode.anguhashblog.com") {
+		if (this.blogURL === "hashblog-withangular.hashnode.dev") {
 			this.blogURLChanged = false;
 		} else {
 			this.blogURLChanged = true;
