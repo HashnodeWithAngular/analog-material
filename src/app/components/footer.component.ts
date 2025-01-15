@@ -15,8 +15,8 @@ import { BlogService } from '../services/blog.service';
 		<mat-toolbar class="footer">
 			<p>&copy; {{ date }} {{ blogName }}</p>
 			<small
-				>Created using<a href="https://github.com/HashBlogWithAngular" target="_blank"
-					>HashBlogWithAngular</a
+				>Created using<a href="https://github.com/HashnodeWithAngular" target="_blank"
+					>HashnodeWithAngular</a
 				> and<a href="https://analogjs.org" target="_blank"
 					>Analog</a
 				></small

@@ -123,9 +123,9 @@ import { BlogSocialIconsComponent } from "src/app/partials/blog-social-icons.com
 				<p>&copy; {{ date }} {{ blogName }}</p>
 				<small
 					>Created using<a
-						href="https://github.com/AnguHashBlog"
+						href="https://github.com/HashnodeWithAngular"
 						target="_blank"
-						>AnguHashBlog</a
+						>HashnodeWithAngular</a
 					>
 					and<a href="https://analogjs.org" target="_blank">Analog</a></small
 				>

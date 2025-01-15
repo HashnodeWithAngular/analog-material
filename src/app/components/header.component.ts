@@ -223,7 +223,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 	blogInfo!: BlogInfo;
 	blogName: string = "";
 	// start with default image to prevent 404 when returning from post-details page
-	blogImage: string = "/images/anguhashblog-logo-purple-bgr.jpg";
+	blogImage: string = "/images/hashnode-withangular-logo-purple-bgr.jpg";
 	blogSocialLinks!: BlogLinks;
 	seriesList!: SeriesList[];
 	blogService: BlogService = inject(BlogService);
@@ -247,7 +247,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 				if (this.blogInfo.isTeam && this.blogInfo.favicon) {
 					this.blogImage = this.blogInfo.favicon;
 				} else {
-					this.blogImage = "/images/anguhashblog-logo-purple-bgr.jpg";
+					this.blogImage = "/images/hashnode-withangular-logo-purple-bgr.jpg";
 				}
 				if (!this.blogInfo.isTeam) {
 					this.blogService.getAuthorInfo(this.blogURL).subscribe((data) => {
@@ -255,7 +255,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 							this.blogImage = data.profilePicture;
 						} else {
 							this.blogImage =
-								"/images/anguhashblog-logo-purple-bgr.jpg";
+								"/images/hashnode-withangular-logo-purple-bgr.jpg";
 						}
 					});
 				}
