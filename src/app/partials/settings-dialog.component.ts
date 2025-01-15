@@ -43,7 +43,7 @@ import { BlogService } from "../services/blog.service";
 		} @else {
 		<mat-dialog-content>
 			<h3 mat-dialog-title>Try with your Blog</h3>
-			<p>try AnguHashBlog</p>
+			<p>try HashnodeWithAngular</p>
 			<small>with another Hashnode blog </small>
 			<mat-form-field>
 				<mat-label>Blog URL</mat-label>
@@ -151,7 +151,7 @@ import { BlogService } from "../services/blog.service";
   `,
 })
 export class SettingsDialogComponent implements OnInit {
-	blogURL: string = "hashblog-withangular.hashnode.dev";
+	blogURL: string = "blog-hashnode.withangular.dev";
 	newBlogURL: string = "";
 	blogURLChanged: boolean = false;
 	blogService: BlogService = inject(BlogService);
@@ -160,7 +160,7 @@ export class SettingsDialogComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.blogURL = this.blogService.getBlogURL();
-		if (this.blogURL === "hashblog-withangular.hashnode.dev") {
+		if (this.blogURL === "blog-hashnode.withangular.dev") {
 			this.blogURLChanged = false;
 		} else {
 			this.blogURLChanged = true;
@@ -170,7 +170,7 @@ export class SettingsDialogComponent implements OnInit {
 	changeBlogURL(): void {
 		this.blogService.setBlogURL(this.newBlogURL);
 		this.blogURL = this.blogService.getBlogURL();
-		if (this.blogURL === "hashblog-withangular.hashnode.dev") {
+		if (this.blogURL === "blog-hashnode.withangular.dev") {
 			this.blogURLChanged = false;
 		} else {
 			this.blogURLChanged = true;

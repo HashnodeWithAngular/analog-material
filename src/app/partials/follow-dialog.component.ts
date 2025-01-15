@@ -24,7 +24,7 @@ import { MatIconModule } from "@angular/material/icon";
 		</div>
 		<img
 			class="logo"
-			src="/images/anguhashblog-logo-purple-bgr.jpg"
+			src="/images/hashnode-withangular-logo-purple-bgr.jpg"
 			alt=""
 		/>
 		<mat-dialog-content>

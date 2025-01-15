@@ -42,7 +42,7 @@ export class BlogSocialIconsComponent {
 		private iconRegistry: MatIconRegistry,
 		private sanitizer: DomSanitizer
 	) {
-    const deployedUrl = "https://analog-hashblog.withangular.dev/";
+    const deployedUrl = "https://analog-hashnode.withangular.dev/";
 		iconRegistry.addSvgIcon("twitter",
 			this.sanitizer.bypassSecurityTrustResourceUrl(`${deployedUrl}icons/twitter.svg`)
 		);
